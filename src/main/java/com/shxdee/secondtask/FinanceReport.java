@@ -62,7 +62,15 @@ public class FinanceReport {
 
     @Override
     public String toString() {
-        return String.format("Автор: %s, Дата: %s.%s.%s, Платежи: %n%s\n", name, getDay(),getMonth(),getYear(), Arrays.toString(arr));
+        String result = String.format("Автор: %s, Дата: %02d.%02d.%04d, Платежи:\n", name, getDay(),getMonth(),getYear());
+        if (arr != null) {
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] != null) {
+                    result = result + arr[i].toString();
+                }
+            }
+        }
+        return result;
     }
 
     @Override

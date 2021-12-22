@@ -2,28 +2,28 @@ package com.shxdee.secondtask;
 
 public class IncomeDeclaration {
     private final int year;
-    private String fullName = null;
+    private String name = null;
 
-    private double[] valueInMonth   = new double[12];
-    private double[] valueUpToMonth = new double[12];
+    private double[] incomeInMonth   = new double[12];
+    private double[] incomeUpToMonth = new double[12];
     private double[] taxes          = new double[12];
 
-    public IncomeDeclaration(IncomeStatement[] iStatement, int year, String fullName) {
+    public IncomeDeclaration(IncomeStatement[] iStatement, int year, String name) {
         this.year = year;
-        this.fullName = new String(fullName);
+        this.name = new String(name);
 
-        double[] value;
+        double[] income;
         for (IncomeStatement is : iStatement) {
-            value = is.getValue();
+            income = is.getIncome();
             for (int i = 0; i < 12; i++) {
-                valueInMonth[i] += value[i];
+                incomeInMonth[i] += income[i];
             }
         }
         double v1 = 0, v2 = 0;
         int taxesProc = 0;      // отметка в 0, 24к и 240к
 
         for (int i = 0; i < 12; i++) {
-            v2 += valueInMonth[i];
+            v2 += incomeInMonth[i];
             if (taxesProc == 0) {
                 if (v2 > 240000) {
                     taxes[i] += (v2 - 240000) * 0.2 + (216000 - v1) * 0.13;
@@ -54,12 +54,12 @@ public class IncomeDeclaration {
         return result;
     }
 
-    public double[] getValuesInMonth() {
-        return valueInMonth;
+    public double[] getIncomeInMonth() {
+        return incomeInMonth;
     }
 
-    public double[] getValuesUpToMonth() {
-        return valueUpToMonth;
+    public double[] getIncomeUpToMonth() {
+        return incomeUpToMonth;
     }
 
     public double[] getTaxes() {
@@ -70,7 +70,7 @@ public class IncomeDeclaration {
         return year;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 }

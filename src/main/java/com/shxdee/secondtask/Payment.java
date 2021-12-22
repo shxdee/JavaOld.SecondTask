@@ -72,6 +72,6 @@ public class Payment {
 
     @Override
     public String toString() {
-        return String.format("Плательщик: %s, Дата: %s.%s.%s, Сумма: %f руб. %f коп.\n", name, getDay(),getMonth(),getYear(), ceil(sum), sum - ceil(sum));
+        return String.format("Плательщик: %s, Дата: %02d.%02d.%04d, Сумма: %f руб. %f коп.\n", name, getDay(),getMonth(),getYear(), ceil(sum), sum - ceil(sum));
     }
 }

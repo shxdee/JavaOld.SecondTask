@@ -1,28 +1,28 @@
 package com.shxdee.secondtask;
 
 public class IncomeStatement {
-    private String fullName = null;
+    private String name = null;
     private String organisationName = null;
     private final int year;
-    private final double[] value = new double[12];
+    private final double[] income = new double[12];
 
-    public IncomeStatement(double[] value, String fullName, String organisationName, int year) {
-        System.arraycopy(value, 0, this.value, 0, 12);
+    public IncomeStatement(double[] income, String name, String organisationName, int year) {
+        System.arraycopy(income, 0, this.income, 0, 12);
         this.year = year;
-        this.fullName = new String(fullName);
+        this.name = new String(name);
         this.organisationName = new String(organisationName);
     }
 
-    public double[] getValue() {
-        return value;
+    public double[] getIncome() {
+        return income;
     }
 
-    public String getOrganisationName() {
-        return organisationName;
+    public String getOrganisationName() { 
+        return organisationName; 
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
     public int getYear() {

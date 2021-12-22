@@ -2,8 +2,6 @@ package com.shxdee.secondtask;
 
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
-import static org.testng.AssertJUnit.assertArrayEquals;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
