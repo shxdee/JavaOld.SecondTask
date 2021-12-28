@@ -34,11 +34,20 @@ public class StringProcessorTest {
     public void testReverseWords() {
         String s = StringProcessor.ReverseWords("aaa bbb cc dd ");
         assertEquals(s," dd cc bbb aaa");
+        s = StringProcessor.ReverseWords("  ");
+        assertEquals(s,"  ");
+        s = StringProcessor.ReverseWords("a  ");
+        assertEquals(s,"  a");
+        s = StringProcessor.ReverseWords(" aa aa  ");
+        assertEquals(s,"  aa aa ");
     }
 
     @Test
     public void testConvertHEXtoDECinString() {
         String s = StringProcessor.ConvertHEXtoDECinString("Васе 0x00000010 лет");
         assertEquals(s,"Васе 16 лет");
+
+        s = StringProcessor.ConvertHEXtoDECinString("Васе 0xA лет");
+        assertEquals(s,"Васе 10 лет");
     }
 }

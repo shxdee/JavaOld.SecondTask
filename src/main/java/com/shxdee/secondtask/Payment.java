@@ -9,9 +9,9 @@ public class Payment {
 
     private final GregorianCalendar date;
     private String name;
-    private double sum;
+    private int sum;
 
-    public Payment(String name, double sum, GregorianCalendar date) {
+    public Payment(String name, int sum, GregorianCalendar date) {
         this.date = date;
         setName(name);
         setSum(sum);
@@ -47,11 +47,11 @@ public class Payment {
         return date.get(GregorianCalendar.DAY_OF_MONTH);
     }
 
-    public double getSum() {
+    public int getSum() {
         return sum;
     }
 
-    public void setSum(double sum) {
+    public void setSum(int sum) {
         if (sum <= 0) throw new IllegalArgumentException("Negative sum!");
         this.sum = sum;
     }
@@ -59,10 +59,12 @@ public class Payment {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Payment payment = (Payment) o;
-        return date == ((Payment) o).date
-                && Double.compare(payment.sum, sum) == 0 && Objects.equals(name, payment.name);
+        if (!(o instanceof Payment)) return false;
+        Payment p = (Payment) o;
+        return getYear() == p.getYear() &&
+                getMonth() == p.getMonth() &&
+                getDay() == p.getDay()
+                && sum == p.getSum() && Objects.equals(name, p.name);
     }
 
     @Override
@@ -72,6 +74,8 @@ public class Payment {
 
     @Override
     public String toString() {
-        return String.format("Плательщик: %s, Дата: %02d.%02d.%04d, Сумма: %f руб. %f коп.\n", name, getDay(),getMonth(),getYear(), ceil(sum), sum - ceil(sum));
+        int rub = sum / 100;
+        int kop = sum % 100;
+        return String.format("Плательщик: %s, Дата: %02d.%02d.%04d, Сумма: %d руб. %d коп.\n", name, getDay(),getMonth(),getYear(), rub, kop);
     }
 }

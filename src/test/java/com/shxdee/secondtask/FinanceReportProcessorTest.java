@@ -17,15 +17,16 @@ public class FinanceReportProcessorTest {
             new Payment("Плательщиков Один Василевич", 110, new GregorianCalendar(2010, Calendar.MARCH, 12)),
             new Payment("Плачущий Два Игоревич", 250, new GregorianCalendar(2015, Calendar.JULY, 18)));
 
-    /*@Test
+    @Test
     public void testFinanceReportProcessorByChar() {
-        assertEquals(FinanceReportProcessor.GetPaymentByFirstSymbol(TestFinanceReport, 'П'),TestFinanceReport2);
-    }*/
+        FinanceReport FinanceReportByChar = new FinanceReport(TestFinanceReport);
+        assertEquals(FinanceReportProcessor.GetPaymentByFirstSymbol(FinanceReportByChar, 'П'),TestFinanceReport2);
+    }
 
-    /*@Test
+    @Test
     public void testFinanceReportProcessorByValue() {
         assertEquals(FinanceReportProcessor.GetPaymentUnderValue(TestFinanceReport, 300), TestFinanceReport2);
-    }*/
+    }
 
     @Test
     public void testFinanceReportProcessorByDate() {

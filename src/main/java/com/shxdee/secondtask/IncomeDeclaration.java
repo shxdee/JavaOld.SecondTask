@@ -4,13 +4,12 @@ public class IncomeDeclaration {
     private final int year;
     private String name = null;
 
-    private double[] incomeInMonth   = new double[12];
-    private double[] incomeUpToMonth = new double[12];
-    private double[] taxes          = new double[12];
+    private final double[] incomeInMonth   = new double[12];
+    private final double[] taxes          = new double[12];
 
     public IncomeDeclaration(IncomeStatement[] iStatement, int year, String name) {
         this.year = year;
-        this.name = new String(name);
+        this.name = name;
 
         double[] income;
         for (IncomeStatement is : iStatement) {
@@ -20,7 +19,7 @@ public class IncomeDeclaration {
             }
         }
         double v1 = 0, v2 = 0;
-        int taxesProc = 0;      // отметка в 0, 24к и 240к
+        int taxesProc = 0;
 
         for (int i = 0; i < 12; i++) {
             v2 += incomeInMonth[i];
@@ -56,10 +55,6 @@ public class IncomeDeclaration {
 
     public double[] getIncomeInMonth() {
         return incomeInMonth;
-    }
-
-    public double[] getIncomeUpToMonth() {
-        return incomeUpToMonth;
     }
 
     public double[] getTaxes() {

@@ -14,99 +14,56 @@ public class StringProcessor {
     }
 
 
-    public static int CountIncludeStringToString(String s1, String s2) {
+    public static int CountIncludeStringToString(String str1, String str2) {
         int count = 0;
-        int index;
-        boolean includeTrue;
-
-        if (s2 == null || "".equals(s2)) {
-            throw new IllegalArgumentException("Первая строка пустая или имеет значение null.");
-        }
-        else if (s1 != null) {
-            if (s1.length() >= s2.length()) {
-                index = s1.indexOf(s2.charAt(0));
-                while (index != -1) {
-                    includeTrue = true;
-                    for (int i = 1; i < s2.length() && includeTrue; i++) {
-                        if (index + s2.length() > s1.length()) {
-                            includeTrue = false;
-                        }
-                        else if (s1.charAt(index + i) != s2.charAt(i)) {
-                            includeTrue = false;
-                        }
-                    }
-                    if (includeTrue) {
-                        count++;
-                    }
-                    index = s1.indexOf(s2.charAt(0), index + 1);
-                }
-            }
+        if (str1 == null || str2 == null || str2.isEmpty())
+            throw new IllegalArgumentException("Строка пустая или имеет значение null.");
+        if (str1.length() < str2.length())
+            throw new IllegalArgumentException("Вторая строка не может быть короче первой.");
+        for (int i = 0; i <= str1.length() - str2.length(); i++) {
+            if (str2.equals(str1.subSequence(i, str2.length() + i).toString())) count++;
         }
         return count;
     }
 
 
     public static String ParseStringOneTwoThree(String str) {
-        if (str == null) throw new IllegalArgumentException("str can't be null");
+        if (str == null) throw new IllegalArgumentException("Строка имеет значение null.");
         if (str.isEmpty()) return "";
 
-        str = str.replaceAll("1", "один");
-        str = str.replaceAll("2", "два");
-        str = str.replaceAll("3", "три");
+        str = str.replace("1", "один");
+        str = str.replace("2", "два");
+        str = str.replace("3", "три");
 
         return str;
     }
 
 
     public static void DeleteEverySecondInStringBuilder(StringBuilder str) {
-        if (str != null) {
-            int len = str.length();
-            for (int i = 1; i < len; i++) {
-                str.delete(i,i+1);
-                len--;
-            }
+        int len = str.length();
+        for (int i = 1; i < len; i++) {
+            str.delete(i, i + 1);
+            len--;
         }
     }
 
 
     public static String ReverseWords(String str) {
-        String result = null;
-        if (str != null) {
-            result = ""; str += "|";
-            String[] word = str.split(" ");
-            for (int i = word.length - 1; i > 0; i--) {
-                if (i == word.length - 1 && word[i].equals("|")) { result += " "; }
-                else  { result = result + word[i] + " "; }
-            }
-            if (word[0] == "") { result += " "; }
-            result += word[0];
-        }
-        return result;
-    }
-
-    private static long ConvertHexToDecInt(String str) {
-        long count = 0;
-        long multiple = 1;
-        for (int i = 7; i >= 0; i--) {
-            count += (str.charAt(i) - '0') * multiple;
-            multiple *= 16;
-        }
-        return count;
+        StringBuilder StringReverser = new StringBuilder();
+        if (str == null) throw new IllegalArgumentException("Строка имеет значение null.");
+        StringReverser.append(str);
+        StringReverser.reverse();
+        str = StringReverser.toString();
+        return str;
     }
 
     public static String ConvertHEXtoDECinString(String str) {
         String result = null;
-        if (str != null) {
-            long count = 0;
-            int end;
-            String[] without0x = str.split("0x");
-            result = without0x[0];
-            for (int i = 1; i < without0x.length; i++) {
-                count = ConvertHexToDecInt(without0x[i].substring(0, 8));
-                end = without0x[i].length();
-                result = result + count + without0x[i].substring(8, end);
-            }
-        }
+        if (str == null) throw new IllegalArgumentException("Строка имеет значение null.");
+        String[] half = str.split("0x");
+        String[] hex = half[1].split(" ", 2);
+        int decimal = Integer.parseInt(hex[0], 16);
+        result = half[0] + decimal + " " + hex[1];
         return result;
     }
 }

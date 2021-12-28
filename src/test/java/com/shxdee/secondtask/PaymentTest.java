@@ -43,7 +43,7 @@ public class PaymentTest {
 
     @Test
     public void testPaymentToString() {
-        String TestString = "Плательщик: Проскурин Евгений Юрьевич, Дата: 24.11.2021, Сумма: 50,000000 руб. 0,000000 коп.\n";
+        String TestString = "Плательщик: Проскурин Евгений Юрьевич, Дата: 24.11.2021, Сумма: 0 руб. 50 коп.\n";
         assertEquals(TestPayment.toString(), TestString);
     }
 }

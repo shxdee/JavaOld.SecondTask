@@ -12,13 +12,20 @@ public class FinanceReport {
     public FinanceReport(String name, GregorianCalendar date, Payment... arr) {
         this.date = date;
         this.name = name;
-        this.arr = arr.clone();
+        this.arr = arr;
     }
 
-    public FinanceReport(FinanceReport financeReport) {
-        this.date = financeReport.getDate();
-        this.name = financeReport.getName();
-        this.arr = financeReport.getArr().clone();
+    public FinanceReport(FinanceReport fr) {
+        this.date = fr.date;
+        this.name = fr.name;
+
+        int len = fr.arr.length;
+        this.arr = new Payment[len];
+        int i = 0;
+        for (Payment p: fr.arr) {
+            this.arr[i] = new Payment(p);
+            i++;
+        }
     }
 
     public String getName() {
@@ -76,9 +83,13 @@ public class FinanceReport {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FinanceReport that = (FinanceReport) o;
-        return date == that.date && Arrays.equals(arr, that.arr) && Objects.equals(name, that.name);
+        if (!(o instanceof FinanceReport)) return false;
+        FinanceReport fr = (FinanceReport) o;
+        return getYear() == fr.getYear() &&
+                getMonth() == fr.getMonth() &&
+                getDay() == fr.getDay() &&
+                Arrays.equals(arr, fr.arr) &&
+                Objects.equals(getName(), fr.getName());
     }
 
     @Override

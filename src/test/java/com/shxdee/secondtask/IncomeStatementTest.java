@@ -2,8 +2,6 @@ package com.shxdee.secondtask;
 
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
-import static org.testng.AssertJUnit.assertArrayEquals;
-import java.util.Arrays;
 
 
 public class IncomeStatementTest {
@@ -16,14 +14,17 @@ public class IncomeStatementTest {
         assertEquals(TestIncomeStatement.getIncome(), arr);
     }
 
+    @Test
     public void testGetOrganisationName() {
         assertEquals(TestIncomeStatement.getOrganisationName(), "ОмГУ");
     }
 
+    @Test
     public void testGetName() {
         assertEquals(TestIncomeStatement.getName(), "Проскурин Евгений Юрьевич");
     }
 
+    @Test
     public void testGetYear() {
         assertEquals(TestIncomeStatement.getYear(), 2021);
     }
